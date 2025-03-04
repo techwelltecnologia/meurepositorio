@@ -1,0 +1,54 @@
+def soma(a, b):
+    return a + b
+
+def subtracao(a, b):
+    return a - b
+
+def multiplicacao(a, b):
+    return a * b
+
+def divisao(a, b):
+    if b == 0:
+        raise ValueError("Erro: divisão por zero não é permitida.")
+    return a / b
+
+def operacao(escolha, num1, num2):
+    operacoes = {
+        '1': soma,
+        '2': subtracao,
+        '3': multiplicacao,
+        '4': divisao
+    }
+    return operacoes[escolha](num1, num2)
+
+def interface_calculadora():
+    print("Bem-vindo à Calculadora!")
+    while True:
+        print("\nEscolha a operação:")
+        print("1 - Soma")
+        print("2 - Subtração")
+        print("3 - Multiplicação")
+        print("4 - Divisão")
+        print("5 - Sair")
+        
+        escolha = input("Digite o número da operação desejada: ")
+        
+        if escolha == '5':
+            print("Encerrando a calculadora. Até mais!")
+            break
+        
+        if escolha in ('1', '2', '3', '4'):
+            try:
+                num1 = float(input("Digite o primeiro número: "))
+                num2 = float(input("Digite o segundo número: "))
+                print(f"Resultado: {operacao(escolha, num1, num2)}")
+            except ValueError as e:
+                print(f"Erro: {e}")
+        else:
+            print("Opção inválida. Tente novamente.")
+
+def main():
+    interface_calculadora()
+
+if __name__ == "__main__":
+    main()
